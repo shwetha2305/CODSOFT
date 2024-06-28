@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<meta name="viewport"  content = "width=device-width, initial-scale= 1.0">
+<title> Calculator </title>
+</head>
 
+<style>
+body {
+font-family:'Times New Roman';
+align-items: center;
+justify-content:center;
+display:flex;
+margin-top:100px;
+}
+
+.layout {
+background-color:#ed5377;
+padding:15px;
+width: 320px;
+height:520px;
+border-radius:20px;
+}
+
+.boxes {
+display:grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr 1fr 1fr;
+margin-top:10px;
+gap: 10px;
+}
+
+#display {
+width: 93%;
+height: 70px;
+padding: 10px;
+font-size: 25px;
+border: none;
+border-radius: 5px;
+}
+
+
+button {
+width:100%;
+height:60px;
+font-size:20px;
+cursor:pointer;
+background-color:#ebabba;
+color:black;
+border-radius:20px;
+}
+
+button:hover {
+background-color:white;
+color:#a80c30;
+}
+
+</style>
+
+<body>
+<div class="layout">
+<h1> Basic Calculator</h1>
+<input type="text" id="display" readonly>
+<div class="boxes">
+
+<button class="clr" onclick="clearscreen()">C</button>
+<button class="back" onclick="back()">⌫</button>
+<button class="op" onclick="operator('.')">.</button>
+<button class="op" onclick="operator('/')">/</button>
+<button class="num" onclick="number('1')">1</button>
+<button class="num" onclick="number('2')">2</button>
+<button class="num" onclick="number('3')">3</button>
+<button class="op" onclick="operator('*')">*</button>
+<button class="num" onclick="number('4')">4</button>
+<button class="num" onclick="number('5')">5</button>
+<button class="num" onclick="number('6')">6</button>
+<button class="op" onclick="operator('-')">-</button>
+<button class="num" onclick="number('7')">7</button>
+<button class="num" onclick="number('8')">8</button>
+<button class="num" onclick="number('9')">9</button>
+<button class="op" onclick="operator('+')">+</button>
+<br>
+<button class="num" onclick="number('0')">0</button>
+<br>
+<button class="equal" onclick="calculate()">=</button>
+
+</div>
+</div>
+
+<script>
+let output="";
+function clearscreen() {
+output=" ";
+document.getElementById("display").value = output;
+}
+
+function back() {
+output=output.slice(0,-1);
+document.getElementById("display").value = output;
+}
+
+function operator(sign) {
+output+=sign;
+document.getElementById("display").value = output;
+}
+
+function number(num) {
+output+=num;
+document.getElementById("display").value = output;
+}
+
+
+
+function calculate() {
+try {
+const answer=eval(output);
+output=answer.toString();
+document.getElementById("display").value = output;
+}
+catch(error) {
+alert("Invalid Expression");
+clearscreen();
+}
+}
+</script>
+</body>
+<html>
